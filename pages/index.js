@@ -10,43 +10,49 @@ import { getHomeData } from "../utils/api";
 const topBoxColors = {
   0: colors.lightGreen,
   1: colors.green,
-  2: colors.aquaGreen
-}
+  2: colors.aquaGreen,
+};
 
 export default function Home(props) {
-  const managementSection = props.response.find(section => section.html_id === "management");
-  const topSection = props.response.find(section => section.html_id === "top");
-  const letsTalkSection = props.response.find(section => section.html_id === "lets-talk");
+  const managementSection = props.response.find(
+    (section) => section.html_id === "management"
+  );
+  const topSection = props.response.find(
+    (section) => section.html_id === "top"
+  );
+  const letsTalkSection = props.response.find(
+    (section) => section.html_id === "lets-talk"
+  );
 
   return (
     <Container>
       <HeroBackgroundContainer backgroundImg={topSection.background_img}>
-          <SectionContainer>
-            <BannerTextContainer>
-              <Title>
-                {topSection.header}
-              </Title>
-              <Quote>
-                {topSection.lead_in}
-              </Quote>
-            </BannerTextContainer>
-            <Subtitle>{topSection.children[0].header}</Subtitle>
-            <BannerBoxContainer>
-              {topSection.children[0].list.map((item, index) => (
-                <Box className={item.html_id} key={item.html_id} style={{backgroundColor: topBoxColors[index]}}>
-                 <BannerBoxIcon style={{ backgroundImage: `url(${item.img})` }} />
-                 <BannerBoxText>
-                  {item.text}
-                 </BannerBoxText>
-                </Box>
-              ))}
-            </BannerBoxContainer>
-          </SectionContainer>
+        <SectionContainer>
+          <BannerTextContainer>
+            <Title>{topSection.header}</Title>
+            <Quote>{topSection.lead_in}</Quote>
+          </BannerTextContainer>
+          <Subtitle>{topSection.children[0].header}</Subtitle>
+          <BannerBoxContainer>
+            {topSection.children[0].list.map((item, index) => (
+              <Box
+                className={item.html_id}
+                key={item.html_id}
+                style={{ backgroundColor: topBoxColors[index] }}
+              >
+                <BannerBoxIcon
+                  style={{ backgroundImage: `url(${item.img})` }}
+                />
+                <BannerBoxText>{item.text}</BannerBoxText>
+              </Box>
+            ))}
+          </BannerBoxContainer>
+        </SectionContainer>
       </HeroBackgroundContainer>
       <SectionContainer>
         <Subtitle>{managementSection.header}</Subtitle>
         <TeamMemberCardContainer>
-          {managementSection.children[0].list.map(item => (
+          {managementSection.children[0].list.map((item) => (
             <TeamMemberCard
               key={item.html_id}
               photo={item.img}
@@ -58,24 +64,24 @@ export default function Home(props) {
         </TeamMemberCardContainer>
       </SectionContainer>
       <BackgroundContainer backgroundImg={letsTalkSection.background_img}>
-          <SectionContainer>
-            <Subtitle>{letsTalkSection.header}</Subtitle>
-            <Quote style={{marginRight: "12em"}}>
-              {letsTalkSection.lead_in}
-            </Quote>
-            <ContactForm data={letsTalkSection}/>
-          </SectionContainer>
+        <SectionContainer>
+          <Subtitle>{letsTalkSection.header}</Subtitle>
+          <Quote style={{ marginRight: "12em" }}>
+            {letsTalkSection.lead_in}
+          </Quote>
+          <ContactForm data={letsTalkSection} />
+        </SectionContainer>
       </BackgroundContainer>
     </Container>
   );
 }
 
 export async function getServerSideProps(context) {
-  const response = await getHomeData()
+  const response = await getHomeData();
 
   return {
     props: { response },
-  }
+  };
 }
 
 const Container = styled.div`
@@ -95,7 +101,6 @@ const HeroBackgroundContainer = styled(BackgroundContainer)`
 `;
 
 const Title = styled.h1`
-  font-family: "Avenir";
   font-weight: lighter;
   font-size: 2.72em;
   line-height: 1.14em;
@@ -105,7 +110,6 @@ const Title = styled.h1`
 `;
 
 const Subtitle = styled.h2`
-  font-family: "Avenir";
   font-weight: lighter;
   font-size: 2em;
   color: ${colors.font.blue};
@@ -113,7 +117,6 @@ const Subtitle = styled.h2`
 `;
 
 const Quote = styled.p`
-  font-family: "Avenir";
   font-weight: 500;
   font-size: 1.5em;
   color: ${colors.font.black};
@@ -136,7 +139,6 @@ const BannerBoxContainer = styled.div`
   .high-value {
     margin: auto 42px;
   }
-  
 `;
 
 const Box = styled.div`
@@ -146,7 +148,7 @@ const Box = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-`;           
+`;
 
 const BannerBoxIcon = styled.div`
   width: 140px;
@@ -157,7 +159,6 @@ const BannerBoxIcon = styled.div`
 `;
 
 const BannerBoxText = styled.p`
-  font-family: "Avenir";
   font-size: 20px;
   text-align: center;
   color: ${colors.font.white};

@@ -23,7 +23,6 @@ const DropDownContainer = styled.div`
 
 const NavItem = styled.div`
   padding: 0.5em 1.5em;
-  font-family: "Avenir";
   font-weight: 500;
   font-size: 1em;
   line-height: 1.5em;

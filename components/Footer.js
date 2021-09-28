@@ -64,7 +64,6 @@ const FooterRow = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  font-family: "Avenir";
   color: ${colors.font.black};
   text-align: left;
 `;

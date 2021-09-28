@@ -21,7 +21,6 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   color: ${colors.font.black};
-  font-family: "Avenir";
 `;
 
 const Box = styled.div`
@@ -31,7 +30,7 @@ const Box = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-image: url(${props => props.photo});
+  background-image: url(${(props) => props.photo});
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;

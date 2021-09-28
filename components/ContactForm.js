@@ -4,37 +4,34 @@ import { Formik } from "formik";
 import { colors } from "../utils/theme";
 
 export default function ContactForm(props) {
-
   return (
     <Container>
       <Formik
         initialValues={{ email: "", name: "", company: "", phone: "" }}
         onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
       >
-        {({
-          values,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-        }) => (
+        {({ values, handleChange, handleBlur, handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
-              {props.data.form_fields.map(field => (
-                <Input
-                  key={field.html_id}
-                  type={field.input_type}
-                  name={field.html_id}
-                  placeholder={field.label}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values[field.html_id]}
-                />
-              ))}
-            <PrivacyLink href={props.data.privacy_link.href} alt="Privacy Notice">
+            {props.data.form_fields.map((field) => (
+              <Input
+                key={field.html_id}
+                type={field.input_type}
+                name={field.html_id}
+                placeholder={field.label}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values[field.html_id]}
+              />
+            ))}
+            <PrivacyLink
+              href={props.data.privacy_link.href}
+              alt="Privacy Notice"
+            >
               {props.data.privacy_link.text}
             </PrivacyLink>
             <SubmitButton type="submit">
               Submit
-              <SubmitButtonIcon/>
+              <SubmitButtonIcon />
             </SubmitButton>
           </Form>
         )}
@@ -65,13 +62,11 @@ const Input = styled.input`
   padding-left: 10px;
   border-radius: 5px;
   border: solid 1px ${colors.lightGray};
-  font-family: "Avenir";
   font-size: 14px;
   font-weight: 500;
 `;
 
 const PrivacyLink = styled.a`
-  font-family: "Avenir";
   color: ${colors.font.black};
   text-align: left;
   text-decoration: none;
@@ -94,7 +89,6 @@ const SubmitButton = styled.button`
   align-self: flex-end;
   background-color: ${colors.yellow};
   color: ${colors.font.yellow};
-  font-family: "Avenir";
   font-size: 18px;
   font-weight: 500;
   grid-column: 2;

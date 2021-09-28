@@ -5,7 +5,9 @@ import { colors } from "../utils/theme";
 
 export default function Header(props) {
   const [dropDownVisibility, setDropDownVisibility] = useState(null);
-  const headerSection = props.data.find(section => section.html_id === "header");
+  const headerSection = props.data.find(
+    (section) => section.html_id === "header"
+  );
 
   return (
     <Container>
@@ -18,15 +20,15 @@ export default function Header(props) {
           />
         </a>
         <NavContainer>
-          {headerSection.main_menu.map(item => (
+          {headerSection.main_menu.map((item) => (
             <NavSectionContainer
-            key={item.label}
-            onMouseEnter={() => setDropDownVisibility(item.label)}
-            onMouseLeave={() => setDropDownVisibility(null)}
-          >
-            <NavSection>{item.label}</NavSection>
-            {dropDownVisibility === item.label ? <DropDown /> : null}
-          </NavSectionContainer>
+              key={item.label}
+              onMouseEnter={() => setDropDownVisibility(item.label)}
+              onMouseLeave={() => setDropDownVisibility(null)}
+            >
+              <NavSection>{item.label}</NavSection>
+              {dropDownVisibility === item.label ? <DropDown /> : null}
+            </NavSectionContainer>
           ))}
         </NavContainer>
       </ContentContainer>
@@ -86,7 +88,6 @@ const NavSection = styled.h2`
   margin: 0;
   padding: 0.5em 1em;
   color: ${colors.font.white};
-  font-family: "Avenir";
   font-weight: 500;
   font-size: 1.5em;
   text-decoration: none;
